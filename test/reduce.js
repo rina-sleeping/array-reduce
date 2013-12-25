@@ -33,6 +33,32 @@ test('numeric reduces', function (t) {
     );
 });
 
+test('holes', function (t) {
+    t.plan(4);
+    
+    var xs = Array(10);
+    xs[2] = 5; xs[4] = 6; xs[8] = 4;
+    t.equal(
+        reduce(xs, function (acc, x) { return acc + x }),
+        15
+    );
+    t.equal(
+        reduce(xs, function (acc, x) { return acc + x }, 100),
+        115
+    );
+    
+    var ys = cripple(Array(10));
+    ys[2] = 5; ys[4] = 6; ys[8] = 4;
+    t.equal(
+        reduce(ys, function (acc, x) { return acc + x }),
+        15
+    );
+    t.equal(
+        reduce(ys, function (acc, x) { return acc + x }, 100),
+        115
+    );
+});
+
 function cripple (xs) {
     xs.reduce = undefined;
     return xs;
