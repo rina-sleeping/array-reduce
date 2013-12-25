@@ -59,7 +59,27 @@ test('holes', function (t) {
     );
 });
 
+test('object', function (t) {
+    t.plan(1);
+    var obj = { a: 3, b: 4, c: 5 };
+    var res = reduce(objectKeys(obj), function (acc, key) {
+        acc[key.toUpperCase()] = obj[key] * 111;
+        return acc;
+    }, {});
+    t.deepEqual(res, { A: 333, B: 444, C: 555 });
+});
+
 function cripple (xs) {
     xs.reduce = undefined;
     return xs;
 }
+
+var objectKeys = function (obj) {
+    var keys = [];
+    for (var key in obj) {
+        if (hasOwn.call(obj, key)) keys.push(key);
+    }
+    return keys;
+};
+
+var hasOwn = Object.prototype.hasOwnProperty;
