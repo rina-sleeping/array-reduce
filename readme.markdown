@@ -2,6 +2,10 @@
 
 `[].reduce()` for old browsers
 
+[![testling badge](https://ci.testling.com/substack/array-reduce.png)](https://ci.testling.com/substack/array-reduce)
+
+[![build status](https://secure.travis-ci.org/substack/array-reduce.png)](http://travis-ci.org/substack/array-reduce)
+
 # example
 
 ```
